@@ -20,7 +20,8 @@ This project implements a **DNS resolution system** that supports both **iterati
 ### Prerequisites
 - Python 3.x installed on your system.
 - Install `dnspython` library using:
-  ```
+  
+  ```bash
   pip install dnspython
   ```
 ---
