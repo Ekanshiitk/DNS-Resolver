@@ -44,16 +44,8 @@ python3 dns_resolver.py iterative google.com
 ```
 **Expected Output:**
 ```
-[Iterative DNS Lookup] Resolving google.com
-[DEBUG] Querying ROOT server (198.41.0.4) - SUCCESS
-Extracted NS hostname: l.gtld-servers.net.
-Resolved l.gtld-servers.net. -> 192.41.162.30
-[DEBUG] Querying TLD server (192.41.162.30) - SUCCESS
-Extracted NS hostname: ns1.google.com.
-Resolved ns1.google.com. -> 216.239.32.10
-[DEBUG] Querying AUTH server (216.239.32.10) - SUCCESS
-[SUCCESS] google.com -> 142.250.194.78
-Time taken: 0.597 seconds
+![image](https://github.com/user-attachments/assets/1f4abdc4-b3de-443a-b4e3-1eef6091e136)
+
 ```
 
 #### Recursive Lookup:
@@ -62,13 +54,9 @@ python3 dns_resolver.py recursive google.com
 ```
 **Expected Output:**
 ```
-[Recursive DNS Lookup] Resolving google.com
-[SUCCESS] google.com -> ns1.google.com.
-[SUCCESS] google.com -> ns2.google.com.
-[SUCCESS] google.com -> 172.217.167.206
-Time taken: 0.014 seconds
-```
+![image](https://github.com/user-attachments/assets/ec506202-de92-4b92-9bd1-063124eecb18)
 
+```
 ---
 
 ## Implementation Details
