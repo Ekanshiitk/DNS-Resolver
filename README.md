@@ -43,20 +43,18 @@ Where:
 python3 dns_resolver.py iterative google.com
 ```
 **Expected Output:**
-```
+
 ![image](https://github.com/user-attachments/assets/1f4abdc4-b3de-443a-b4e3-1eef6091e136)
 
-```
 
 #### Recursive Lookup:
 ```bash
 python3 dns_resolver.py recursive google.com
 ```
 **Expected Output:**
-```
+
 ![image](https://github.com/user-attachments/assets/ec506202-de92-4b92-9bd1-063124eecb18)
 
-```
 ---
 
 ## Implementation Details
