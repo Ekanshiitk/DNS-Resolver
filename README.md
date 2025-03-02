@@ -1,4 +1,4 @@
-#ASSIGNMENT 2: DNS Resolver - Iterative and Recursive Lookup
+# ASSIGNMENT 2: DNS Resolver - Iterative and Recursive Lookup
 
 ## Authors: Ekansh Bajpai (220390), Pulkit Dhayal (220834)
 
