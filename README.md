@@ -22,7 +22,7 @@ This project implements a **DNS resolution system** that supports both **iterati
 - Install `dnspython` library using:
   
   ```bash
-  pip install dnspython
+  pip install python
   ```
 ---
 
@@ -31,7 +31,7 @@ The script accepts command-line arguments to specify the resolution mode (iterat
 
 ### Command Format:
 ```bash
-python3 dns_resolver.py <mode> <domain>
+python3 dnsresolver.py <mode> <domain>
 ```
 Where:
 - `<mode>` is either `iterative` or `recursive`.
@@ -40,7 +40,7 @@ Where:
 ### Example Usage:
 #### Iterative Lookup:
 ```bash
-python3 dns_resolver.py iterative google.com
+python3 dnsresolver.py iterative google.com
 ```
 **Expected Output:**
 
@@ -49,7 +49,7 @@ python3 dns_resolver.py iterative google.com
 
 #### Recursive Lookup:
 ```bash
-python3 dns_resolver.py recursive google.com
+python3 dnsresolver.py recursive google.com
 ```
 **Expected Output:**
 
@@ -77,7 +77,7 @@ python3 dns_resolver.py recursive google.com
 ## File Structure
 ```
 A2/
-│── dns_resolver.py   # Main Python script
+│── dnsresolver.py   # Main Python script
 │── README.md         # Documentation (this file)
 ```
 
