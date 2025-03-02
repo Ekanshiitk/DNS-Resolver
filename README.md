@@ -31,20 +31,6 @@ python3 dnsresolver.py iterative <domain>
 python3 dnsresolver.py recursive <domain>
 ```
 
-### Example Commands
-
-Perform an **iterative** DNS resolution:
-
-```bash
-python3 dnsresolver.py iterative example.com
-```
-
-Perform a **recursive** DNS resolution:
-
-```bash
-python3 dnsresolver.py recursive example.com
-```
-
 ## How It Works
 
 ### Iterative Mode
