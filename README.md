@@ -1,82 +1,98 @@
+#ASSIGNMENT 2: DNS Resolver - Iterative and Recursive Lookup
 
-# DNS - Resolver
+## Authors: Ekansh Bajpai (220390), Pulkit Dhayal (220834)
 
-This Python script implements both **iterative** and **recursive** DNS resolution. It allows querying a domain name to obtain its IP address using either method.
+## Course: CS425 - Computer Networks  
+**Instructor:** Adithya Vadapalli  
+---
 
-## Features
+## Overview
+This project implements a **DNS resolution system** that supports both **iterative** and **recursive** lookups. It is built using Python and the `dnspython` library. The assignment demonstrates how DNS queries are resolved through the hierarchical DNS infrastructure.
 
--   **Iterative DNS Resolution**: Queries root servers --> TLD servers --> finally authoritative servers to resolve the domain.
--   **Recursive DNS Resolution**: Uses the system's DNS resolver to fetch the result directly.
--   **Handles Failures**: Implements exception handling for timeouts and unreachable servers.
--   **Uses dnspython Library**: Leverages `dnspython` to construct and send DNS queries.
+### What is DNS Resolution?
+- **Iterative Resolution**: The resolver queries root servers, then TLD servers, and finally authoritative servers to get the response.
+- **Recursive Resolution**: The resolver delegates the entire resolution process to an external resolver, which retrieves the final result.
 
-## Prerequisites
+---
 
-Ensure you have Python3 installed. You also need to install the `dnspython` library:
+## Setup Instructions
 
+### Prerequisites
+- Python 3.x installed on your system.
+- Install `dnspython` library using:
+  ```
+  pip install dnspython
+  ```
+---
+
+## Usage
+The script accepts command-line arguments to specify the resolution mode (iterative or recursive) and the domain to be resolved.
+
+### Command Format:
 ```bash
-pip install dnspython
+python3 dns_resolver.py <mode> <domain>
 ```
+Where:
+- `<mode>` is either `iterative` or `recursive`.
+- `<domain>` is the domain name to resolve.
 
-## How to run
-
-Run the script from the command line with the following syntax:
-
-- For Iterative DNS resolution
+### Example Usage:
+#### Iterative Lookup:
 ```bash
-python3 dnsresolver.py iterative <domain>
+python3 dns_resolver.py iterative google.com
 ```
-- For Recursive DNS resolution
-```bash
-python3 dnsresolver.py recursive <domain>
+**Expected Output:**
 ```
-
-## How It Works
-
-### Iterative Mode
-
-1.  Starts with a predefined set of root DNS servers.
-2.  Sends a DNS query to a root server.
-3.  Extracts nameservers from the response and queries them iteratively.
-4.  Continues this process until it finds the authoritative nameserver that returns the domain's IP address.
-
-### Recursive Mode
-
-1.  Uses the system's DNS resolver to handle the query.
-2.  Directly retrieves the resolved IP without manually iterating through DNS hierarchy.
-
-## Code Structure
-
--   `send_dns_query(server, domain)`: Sends a DNS query to a specified server.
--   `extract_next_nameservers(response)`: Extracts the next set of nameservers from the response.
--   `iterative_dns_lookup(domain)`: Performs iterative DNS resolution.
--   `recursive_dns_lookup(domain)`: Performs recursive DNS resolution using the system's resolver.
--   `ROOT_SERVERS`: List of root DNS server IPs used for iterative resolution.
-
-## Error Handling
-
-The script uses Python's `try` and `except` blocks for exception handling to manage common errors and unexpected behavior like:
-
--   **Timeouts**: If a DNS server is unresponsive.
--   **NXDOMAIN**: If the domain does not exist.
--   **NoAnswer**: If no answer is returned by the nameserver.
-
-## Example Output
-
-```bash
-[Iterative DNS Lookup] Resolving example.com
+[Iterative DNS Lookup] Resolving google.com
 [DEBUG] Querying ROOT server (198.41.0.4) - SUCCESS
-Extracted NS hostname: a.iana-servers.net.
-Resolved a.iana-servers.net -> 199.43.135.53
-[DEBUG] Querying TLD server (199.43.135.53) - SUCCESS
-[DEBUG] Querying AUTH server (93.184.216.34) - SUCCESS
-[SUCCESS] example.com -> 93.184.216.34
-Time taken: 0.532 seconds
-
+Extracted NS hostname: l.gtld-servers.net.
+Resolved l.gtld-servers.net. -> 192.41.162.30
+[DEBUG] Querying TLD server (192.41.162.30) - SUCCESS
+Extracted NS hostname: ns1.google.com.
+Resolved ns1.google.com. -> 216.239.32.10
+[DEBUG] Querying AUTH server (216.239.32.10) - SUCCESS
+[SUCCESS] google.com -> 142.250.194.78
+Time taken: 0.597 seconds
 ```
 
-## Author
+#### Recursive Lookup:
+```bash
+python3 dns_resolver.py recursive google.com
+```
+**Expected Output:**
+```
+[Recursive DNS Lookup] Resolving google.com
+[SUCCESS] google.com -> ns1.google.com.
+[SUCCESS] google.com -> ns2.google.com.
+[SUCCESS] google.com -> 172.217.167.206
+Time taken: 0.014 seconds
+```
 
-Ekansh Bajpai 220390 
+---
 
-Pulkit Dhayal 220834
+## Implementation Details
+### **1. Iterative DNS Resolution**
+- The script starts querying the **root DNS servers**.
+- It extracts **next-level nameservers** (TLD or authoritative) and queries them until the IP is resolved.
+- If no final answer is found, it moves to the next level until it reaches the authoritative server.
+
+### **2. Recursive DNS Resolution**
+- The system's DNS resolver performs the entire resolution process on its own.
+- It fetches the result from authoritative servers directly.
+
+### **3. Error Handling**
+- Handles network timeouts and unreachable servers.
+- Provides warnings if a nameserver cannot be resolved.
+- Gracefully manages invalid domain names.
+
+---
+
+## File Structure
+```
+A2/
+│── dns_resolver.py   # Main Python script
+│── README.md         # Documentation (this file)
+```
+
+---
+
